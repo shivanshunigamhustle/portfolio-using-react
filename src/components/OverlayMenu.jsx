@@ -1,11 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-const OverlayMenu = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+export default function OverlayMenu() {
+  // Mobile overlay menu has been directly embedded within Navbar.jsx for unified state management.
+  return null;
 }
-
-export default OverlayMenu

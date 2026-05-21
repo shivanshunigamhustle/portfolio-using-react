@@ -1,13 +1,168 @@
 @import "tailwindcss";
 
-body{
-    font-family: "Poppins", sans-serif;
+:root {
+  /* Default Theme (Cyberpunk - Neon & Teal) */
+  --bg-gradient: linear-gradient(135deg, #09090e 0%, #120c1f 50%, #050508 100%);
+  --color-bg: #09090e;
+  --color-primary: #00f0ff; /* Neon cyan */
+  --color-secondary: #ff007f; /* Neon magenta */
+  --color-accent: #9d00ff; /* Purple glow */
+  --color-text: #e2e8f0;
+  --color-card-bg: rgba(18, 12, 31, 0.45);
+  --color-card-border: rgba(0, 240, 255, 0.15);
+  --color-glow: rgba(0, 240, 255, 0.3);
+  --color-glow-secondary: rgba(255, 0, 127, 0.2);
 }
-h1,h2{
-    font-family: "roboto", sans-serif;
+
+.theme-cosmos {
+  /* Cosmos Theme (Stellar Deep Indigo/Violet Space) */
+  --bg-gradient: linear-gradient(135deg, #02020a 0%, #0d1127 50%, #030008 100%);
+  --color-bg: #02020a;
+  --color-primary: #3b82f6; /* Galactic blue */
+  --color-secondary: #ec4899; /* Deep pink */
+  --color-accent: #8b5cf6; /* Stellar violet */
+  --color-text: #f1f5f9;
+  --color-card-bg: rgba(13, 17, 39, 0.45);
+  --color-card-border: rgba(139, 92, 246, 0.15);
+  --color-glow: rgba(139, 92, 246, 0.3);
+  --color-glow-secondary: rgba(236, 72, 153, 0.2);
 }
-@layer utilities {
-    .gradient {
-      background: linear-gradient(-45deg, #302B60,#00BFF8,#1cd8d2);
-    }
-  } 
+
+.theme-minimal {
+  /* Minimal Theme (Sleek Dark Gray & Platinum) */
+  --bg-gradient: linear-gradient(135deg, #0a0a0a 0%, #161616 50%, #0d0d0d 100%);
+  --color-bg: #0a0a0a;
+  --color-primary: #ffffff; /* White */
+  --color-secondary: #a3a3a3; /* Light gray */
+  --color-accent: #e5e5e5; /* Platinum */
+  --color-text: #f3f4f6;
+  --color-card-bg: rgba(23, 23, 23, 0.6);
+  --color-card-border: rgba(255, 255, 255, 0.08);
+  --color-glow: rgba(255, 255, 255, 0.15);
+  --color-glow-secondary: rgba(163, 163, 163, 0.1);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-bg);
+  background-image: var(--bg-gradient);
+  color: var(--color-text);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, background-image 0.5s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Custom Glassmorphism styles */
+.glass {
+  background: var(--color-card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  transition: border-color 0.5s ease, background-color 0.5s ease, box-shadow 0.3s ease;
+}
+
+.glass-interactive {
+  background: var(--color-card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.glass-interactive:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 12px 40px 0 var(--color-glow);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px var(--color-glow);
+}
+
+.text-glow-secondary {
+  text-shadow: 0 0 10px var(--color-glow-secondary);
+}
+
+.glow-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: #fff;
+  box-shadow: 0 0 5px var(--color-glow);
+}
+
+.glow-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  box-shadow: 0 0 20px var(--color-primary);
+  text-shadow: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-card-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+/* Utility to override default outline for custom cursor buttons */
+a, button {
+  cursor: none !important;
+}
+
+/* Custom Scrollbar for elements */
+.custom-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
